@@ -1,0 +1,27 @@
+---
+layout: post
+title: Ant colony optimization
+date: 2011-04-19 21:53:40.000000000 -07:00
+categories:
+- Projects
+tags:
+- AI
+- Algorithms
+- ant algorithms
+- Python
+- Tech
+status: publish
+type: post
+published: true
+meta:
+  _edit_last: '5759'
+  _publicize_pending: '1'
+author: 
+---
+<p>[caption id="attachment_31" align="alignnone" width="500"]<a href="http://cthompblog.files.wordpress.com/2013/09/ants.png"><img class="size-full wp-image-31" alt="Ant agents converging on a path." src="assets/ants.png" width="500" height="375" /></a> Source: Wikipedia (https://en.wikipedia.org/wiki/Ant_colony_optimization)[/caption]</p>
+<p>I've been looking at ant-algorithms for pathfinding lately. They're interesting because they are very simple multi-agent search, but some of the benefits that I originally thought it might have (dealing with imperfect last-known-information, dynamic environment, etc.) seem to be negated by the fact that it isn't terribly great when you don't have a ton of agents.</p>
+<p>I'll have a more concrete idea of how feasible ant-algorithms are once my implementations are done and I can run simulations. Never hurts to separate the hype from the substance, though.</p>
+<p><strong>Update (2011-12-31)</strong>: We ended up implementing some various pathfinding mechanisms for many-agent movement in a semi-unknown environment. Turns out that ant colony optimization is actually not so great... at least in the classic "pathfinding" sense. Convergence is slow, the actual amount of shared information is weak, etc. The test program is at least pretty, thanks to wxPython. The settings are all at the top of the Python script, and a little arcane, but you can run it with</p>
+<pre><code>python sim.py
+</code></pre>
+<p>You can download the program here: <a href="http://dl.dropbox.com/u/46716/sim.py">sim.py</a></p>

@@ -1,0 +1,25 @@
+---
+layout: post
+title: 'Breaking Cell Phone Authentication: Vulnerabilities in AKA, IMS and Android'
+date: 2013-08-30 22:06:39.000000000 -07:00
+categories:
+- Projects
+tags:
+- attacks
+- cellular systems
+- ims systems
+- networking
+- research
+- security
+status: publish
+type: post
+published: true
+meta:
+  _wpas_skip_4503454: '1'
+  _edit_last: '5759'
+author: 
+---
+<p>Last year, I worked on reverse engineering Android implementations of IMS, the next generation 4G IP based telephony suite of protocols, with Jethro Beekman at Berkeley.<br />
+In addition to our technical report on <a title="MITM against T-Mobile Wi-Fi Calling" href="http://cthompson.co/2013/06/19/mitm-against-t-mobile-wi-fi-calling/">MITM vulnerabilities against T-Mobile's Wi-Fi Calling feature</a> (due to unvalidated SSL certificates), we continued to look at IMS systems in general, and how T-Mobile and Android implemented them. We found that, amongst other things, Digest AKAv1, the authentication and key exchange protocol used in IMS, doesn't correctly require use of the generated secret keys, allowing a variety of attacks. Furthermore, generally accessible APIs in both core Android and in T-Mobile's customized ROMs allow apps with just the READ_PHONE_STATE permission to access the IMS authentication routines in the SIM card, making it possible for low-privilege malware on a phone to let a remote attacker authenticate as that phone.</p>
+<p>A simple example of why you might care: An attacker can pretend to be you (your number, your subscriber ID, your phone) and call premium 1-900 numbers or send text premium text messages, costing you real money.</p>
+<p>Jethro presented our paper at USENIX WOOT (Workshop On Offensive Technologies) 2013 a couple weeks ago. The paper, slides, and video of the talk (thank you USENIX open access policies!) are available at <a href="https://www.usenix.org/conference/woot13/breaking-cell-phone-authentication-vulnerabilities-aka-ims-and-android">https://www.usenix.org/conference/woot13/breaking-cell-phone-authentication-vulnerabilities-aka-ims-and-android</a>.</p>

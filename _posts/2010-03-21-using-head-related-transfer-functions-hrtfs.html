@@ -1,0 +1,70 @@
+---
+layout: post
+title: Using Head-Related Transfer Functions (HRTFs)
+date: 2010-03-21 21:41:03.000000000 -07:00
+categories:
+- Projects
+tags:
+- Audio
+- Tech
+status: publish
+type: post
+published: true
+meta:
+  enclosure: |
+    https://dl.dropboxusercontent.com/u/46716/0fast_tone.wav
+    1764044
+    audio/wav
+  _edit_last: '5759'
+  _wpas_skip_4503454: '1'
+author: 
+---
+<p>My time spent playing around with <a href="http://www.csounds.com/">cSound</a> has both delighted me, and made me kind of sad. There's so much more I could learn, and a lot of that is fundamental to really understanding signal processing, digital instrumentation, and computer music. But, I have learned a lot about actually <em>using</em> HRTFs, as one of the things I toyed with while building my little game <a href="https://christopher-thompson.squarespace.com/blog/2013/3/18/sound-fall-build-with-sound">sound_fall</a>. While they didn't work out for that project, I still wanted to dig around a little more, and share some of what I found (since real discussion of HRTFs is lacking).</p>
+<p>If you're interested in cSound, the <a href="http://www.csounds.com/manual/html/index.html">online manual</a> is very useful, if a bit dense. Looking through the examples included in the pages for the HRTF opcodes was more immediately enlightening, at least from getting immediate use. The relevant opcodes here are <a href="http://www.csounds.com/manual/html/hrtfer.html">hrtfer</a>, <a href="http://www.csounds.com/manual/html/hrtfmove.html">hrtfmove</a>, <a href="http://www.csounds.com/manual/html/hrtfmove2.html">hrtfmove2</a>, and <a href="http://www.csounds.com/manual/html/hrtfstat.html">hrtfstat</a>.</p>
+<p>To get a feel for this, I've made a simple .csd file -- the file that contains the instrument and score information for cSound. It plays a fractal phased sine wave that I whipped up in Audacity.</p>
+<pre>&lt;CsoundSynthesizer&gt;
+&lt;CsOptions&gt;
+; non-realtime output
+    -o hrtf.wav
+&lt;/CsOptions&gt;
+&lt;CsInstruments&gt;
+    sr = 44100    ; standard sample rates
+    kr = 4410
+    ksmps = 10
+    nchnls = 2    ; final output is stereo
+
+instr 10
+    kaz line 0, p3, 180          ; move azimuth from front around right to back
+    kelev line 50, p3, -30       ; move elevation in arc from 50 to -30 deg
+                                 ; (above you to below you)
+    ain soundin "fast_tone.wav"  ; input sound
+
+    ; set left and right channels to results of the hrtfmove2 opcode
+    ; this has less clicking, especially when used for real-time synthesis
+    ; this processes ain, with azimuth 0, the predefined elevation arc,
+    ; and the two HRTF data files (that contain the impule responses)
+
+    ; aleft,aright hrtfmove2 ain, 0, kelev, "hrtf-44100-left.dat","hrtf-44100-right.dat"
+
+    ; This does the same, but with the predefined azimuth arc and an
+    ; elevation of zero.
+     aleft,aright hrtfmove2 ain, kaz, 0, "hrtf-44100-left.dat","hrtf-44100-right.dat"
+
+    outs    aleft, aright
+
+endin
+
+&lt;/CsInstruments&gt;
+&lt;CsScore&gt;
+i10 0 20         ; play for 20 seconds
+e
+&lt;/CsScore&gt;
+&lt;/CsoundSynthesizer&gt;</pre>
+<p>I tried to comment the file enough to make it readable, even if you don't really know what's going on. To use it, you'll need to have cSound installed, and <a href="https://christopher-thompson.squarespace.com/s/simple_hrtf.zip">grab this pack I made with the .csd, fast_tone.wav, and the HRTF data files</a>.</p>
+<p>Then, from a terminal, invoke csound:</p>
+<pre>$ csound simple_hrtf.csd</pre>
+<p>This will output a file named hrtf.wav. Try listening to it with decent headphones:</p>
+<p>https://dl.dropboxusercontent.com/u/46716/0fast_tone.wav</p>
+<p>You may notice that you need to pay a bit of attention to where the sound is coming from to really get the effect. The sound I used has enough edge and variation that the motion in space is more noticeable than a more solid tone might be under the same transformations. You can pass the hrtfmove2 opcode any mono input, so experimentation is easy.</p>
+<p>The actual math for using the HRTF datafiles involves FFTs and discrete-time convolutions -- since I skipped out of being an electrical engineer, I've avoided needing to learn about things like that, but I can't help being curious. If I was a little more competent, I might try to build an extension for OpenAL (which is woefully neglected these days, from the looks of it) to add this functionality. That would make it a little easier to integrate into applications that aren't music synthesis oriented. Oh well.</p>
+<p>Moving on from here, I'd really like to find a good system for real-time synthesis. cSound seems like a possibility, but it isn't really designed for it from the ground up -- the HRTF example here is outputted to a wavefile to avoid buffer and clicking issues. We'll see what I dig up.</p>

@@ -1,0 +1,42 @@
+---
+layout: post
+title: 'SOUND _ FALL : build with sound'
+date: 2010-03-18 21:36:49.000000000 -07:00
+categories:
+- Projects
+tags:
+- Audio
+- Games
+status: publish
+type: post
+published: true
+meta:
+  _edit_last: '5759'
+  _wpas_skip_4503454: '1'
+author: 
+---
+<p><a href="http://cthompblog.files.wordpress.com/2010/03/soundfall.png"><img class="alignnone size-full wp-image-51" alt="soundfall" src="assets/soundfall.png" width="480" height="300" /></a></p>
+<p><strong>Download:</strong> <a href="http://github.com/christhompson/sound_fall/blob/master/SOUND_FALL-1.0.tar.gz">SOUND_FALL-1.0.tar.gz</a></p>
+<p><strong>GitHub:</strong> <a href="http://github.com/christhompson/sound_fall">github.com/christhompson/sound_fall</a></p>
+<p><strong><em>Place blocks of sound without using your eyes.</em></strong></p>
+<p>Download, start it, and then close your eyes. See what you can build using only your ears.</p>
+<p><strong>Requirements:</strong> <a href="http://www.python.org/">Python</a> (tested in v2.6) and <a href="http://www.pygame.org/">Pygame</a>.</p>
+<p>A friend and I had the idea of building games (defined loosely) that didn't use sight as the primary medium. On a computer, this generally limits you to only sound.</p>
+<p>This was a surprisingly long haul for only four days of working on it on and off. I've learned more than I think I'll want to know in a long time about 3D positional audio.</p>
+<p>Some of the good things I've learned:</p>
+<ul>
+<li><a href="http://www.pygame.org/">Pygame</a> is actually well-built and stable. They know how to handle sample buffers.</li>
+<li><a href="http://www.pyglet.org/">Pyglet</a> is definitely a possibility for future endeavors. It's basically an extension of Pygame for better 3D support.</li>
+<li>Python is, as always, a great prototyping language.</li>
+<li>HRTFs are awesome.</li>
+</ul>
+<p>Some of the things I had to learn the hard way:</p>
+<ul>
+<li>OpenAL is a behemoth that I wish worked better. The fact that all of the Python bindings are terribly, old, and poorly documented doesn't help.</li>
+<li>Keep things as simple as possible, even if the overall idea is really complicated. OpenAL was way more than this project needed. I ended up building a custom panning system (since Pygame's mixer only supports Left/Right channel volumes) that was far simpler, and it did everything I needed it to.</li>
+<li>Humans don't have high enough resolution audiospatial recognition: we really distribute sounds within eight regions of the sphere (from my experience). The rest of what we <em>think</em> we might be sensing is due to other cues.</li>
+</ul>
+<p>The fact that humans can't pinpoint sounds in 3D space solely based on the sound was my primary sticking point.</p>
+<p>I had originally wanted to implement this only using 3D positional audio with HRTFs—Head-Relational Transfer Functions. I thought this would let me cue the position of blocks around the player, but it just didn't end up cutting it. But that doesn't stop HRTFs from being really awesome.</p>
+<p>If you aren't familiar with HRTFs and care about audio production in any capacity, you should check them out. Head-Relational Transfer Functions (HRTFs) are signals that you can convolute a mono input against to get the actual signals that a human would hear in each ear. MIT made a database of them, called <a href="http://sound.media.mit.edu/resources/KEMAR.html">KEMAR</a>, back in the '90s using a dummy head and special microphones. I'm still not comfortable trying to use them by hand, but cSound has HRTF support for static and moving positional sounds, which is really cool. I wanted to try to hack together using the command-line interface to cSound through Python to build this system, but HRTFs just weren't enough. <em>sigh.</em></p>
+<p>Anyway, it was an experience, and I hope to continue this weekly challenge to build <strong>cool stuff</strong>, something that I think more people should get in on (even non-computer people doing non-computer things).</p>

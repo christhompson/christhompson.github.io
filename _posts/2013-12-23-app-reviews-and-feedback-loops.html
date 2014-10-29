@@ -1,0 +1,55 @@
+---
+layout: post
+title: App reviews, usable workflows, and feedback loops
+date: 2013-12-23 15:03:09.000000000 -08:00
+categories:
+- Thoughts
+tags:
+- App Store
+- Apps
+- Design
+- research
+- security
+- usability
+status: publish
+type: post
+published: true
+meta:
+  _edit_last: '5759'
+  _publicize_pending: '1'
+  publicize_google_plus_url: https://plus.google.com/110621080847708496414/posts/QWT4vGdBfbd
+  _wpas_done_4577054: '1'
+  _publicize_done_external: a:1:{s:11:"google_plus";a:1:{s:21:"110621080847708496414";b:1;}}
+  publicize_twitter_user: chrisjthompson
+  publicize_twitter_url: http://t.co/APA0cdnP2Q
+  _wpas_done_4503454: '1'
+  _wpas_skip_4577054: '1'
+  _wpas_skip_4503454: '1'
+author: 
+---
+<p>There's been a <a href="http://www.marco.org/2013/12/14/rate-this-app" target="_blank">lot</a> of <a href="http://www.marco.org/2013/12/15/chuq-von-rospach" target="_blank">discussion</a> <a href="http://www.marco.org/2013/12/17/collin-donnell-star-ratings" target="_blank">lately</a> about iOS apps showing users modal dialogues requesting that they rate the app on the App Store. Like this (from <a title="Eff Your Review" href="http://effyr.tumblr.com/" target="_blank">Eff Your Review</a>):</p>
+<p><img class="size-medium wp-image-64 alignnone" alt="effyr_instagram" src="assets/effyr_instagram.jpg?w=169" width="169" height="300" /><img class="size-medium wp-image-66 alignnone" alt="effyr_vine" src="assets/effyr_vine.jpg?w=169" width="169" height="300" /><img class="size-medium wp-image-65 alignnone" alt="effyr_facebook" src="assets/effyr_facebook.jpg?w=169" width="169" height="300" /></p>
+<p>The forces encouraging this behavior are complex, and relate to issues of discoverability and ranking in the App Store. There's <a href="http://atp.fm/episodes/44-a-plague-with-very-minor-effects" target="_blank">been debate</a> about how to curtail these<sup><a id="fn1-t" href="#fn1-b">1</a></sup>.</p>
+<p>My lab likes to think about app markets as a place where <strong>feedback loops</strong> exist, and part of our research into improving the security and privacy of apps (particularly with permission systems) relies on feedback from a user affecting the marketplace itself. Here's a flowchart of the entire thing from one of David Wagner's overview talks:</p>
+<p><a href="http://cthompblog.files.wordpress.com/2013/12/app-flowchart.png"><img class="size-large wp-image-67 aligncenter" alt="App Flowchart" src="assets/app-flowchart.png?w=615" width="615" height="216" /></a></p>
+<p>There's been work to provide tools to improve apps (to help developers reduce overprivileging their apps<sup><a id="fn2-t" href="#fn2-b">2</a></sup>, to detect insecure use of APIs<sup><a id="fn3-t" href="#fn3-b">3</a></sup>, etc.), or to improve the platform<sup><a id="fn4-t" href="#fn4-b">4</a></sup> (making permissions clearer, showing warnings to users at the right time, avoiding habituation). But we make a big assumption:</p>
+<blockquote><p>Not all users need to notice or understand all warnings or notifications for these new systems to be effective -- if some fraction of users <em>do</em> notice, and provide feedback back into the marketplace or to the developers when undesirable behavior occurs, then these systems can still have a positive effect on the quality of apps on a platform.</p></blockquote>
+<p>This assumption is primarily based on research that shows that app reviews are one of the most significant factors in a user's decision to install an app<sup><a id="fn5-t" href="#fn5-b">5</a></sup>. So if some users notice misbehaviors or warnings, and understand them, then they can write good reviews using them, helping all of the novice users that only look over reviews when considering apps.</p>
+<p>But is this actually enough? Can we really say that because some users <em>could</em> write better reviews that our work could actually lead to better app markets?</p>
+<p>The recent app rating brouhaha seems particularly relevant. App markets and platforms need to help out enough to make this work:</p>
+<ul>
+<li>Users need to be encouraged to write reviews. This is particularly important for apps that user <em>don't</em> keep installed.</li>
+<li><em>Useful</em> reviews should be easy to write. Platforms probably need to hold users' hands.</li>
+<li>Reviews need to be easy to read, with useful information pulled out for easy access to users skimming applications. App markets need to be more like Amazon than the iOS App Store: ranking reviews on recency and usefulness, pulling out key points common across a lot of reviews, verified reviews, etc.</li>
+<li>Fake reviews and ratings need to be curbed. This includes apps begging for reviews.</li>
+<li>Rankings and listings in the market should be holistic and well-developed.</li>
+</ul>
+<p>We don't really have any of this on any mobile platform currently, but I think any of them would make for a much better app market.</p>
+<h4>Footnotes</h4>
+<ol class="small">
+<li id="fn1-b">Can Apple ban them? I'd argue you could get pretty far with static analysis tools, but that's for another post... <a href="#fn1-t">^</a></li>
+<li id="fn2-b"><a href="http://www.cs.berkeley.edu/~daw/papers/androidperm-ccs11.pdf">Android Permissions Demystified</a>, by Adrienne Porter Felt et al., developed a tool called Stowaway to detect overprivileged of android apps. <a href="#fn2-t">^</a></li>
+<li id="fn3-b"><a href="http://www.cs.berkeley.edu/~daw/papers/intents-mobisys11.pdf">Analyzing Inter-Application Communication in Android</a>, by Erika Chin et al., developed comdroid to detect insecure use of intents. <a href="#fn3-t">^</a></li>
+<li id="fn4-b">A lot of work has been done on redesigning permission systems for Android: <a href="http://www.cs.berkeley.edu/~daw/papers/anduser-soups12.pdf">What's wrong with permissions</a>, <a href="http://www.cs.berkeley.edu/~daw/papers/askperm-hotsec12.pdf">how to ask for permission for different resources</a>, <a href="http://www.cs.berkeley.edu/~cthompson/papers/SOUPS2013-attribution-mechanisms.pdf">the benefits of automatically granting low risk permissions</a>, etc. This has been a big research area for students of my advisor, <a href="http://www.cs.berkeley.edu/~daw/">David Wagner</a>, and the <a href="http://scrub.cs.berkeley.edu/">SCRUB center</a>. <a href="#fn4-t">^</a></li>
+<li id="fn5-b"><a href="http://www.cs.berkeley.edu/~daw/papers/anduser-soups12.pdf">Android permissions: user attention, comprehension, and behavior</a>, by Adrienne Porter Felt et al., SOUPS '12. <a href="#fn5-t">^</a></li>
+</ol>
