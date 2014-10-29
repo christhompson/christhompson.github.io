@@ -6,7 +6,7 @@
 name: Not Yet Secure
 
 # Short bio or description (displayed in the header)
-description: Musings and projects of a security researcher named Chris Thompson.
+description: Because technology is not yet secure for everyone.
 
 # URL of your avatar or profile pic (you could use your GitHub profile pic)
 avatar: https://avatars1.githubusercontent.com/u/113368?v=2&s=460
@@ -33,7 +33,7 @@ footer-links:
 disqus: 
 
 # Enter your Google Analytics web tracking code (e.g. UA-2110908-2) to activate tracking
-google_analytics: 
+google_analytics: UA-55728011-1
 
 # Your website URL (e.g. http://barryclark.github.io or http://www.barryclark.co)
 # Used for Sitemap.xml and your RSS feed
